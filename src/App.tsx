@@ -4,7 +4,10 @@ import './globals.css';
 import AuthLayout from './_auth/AuthLayout';
 import SigninForm from './_auth/forms/SigninForm';
 import SignupForm from './_auth/forms/SignupForm';
+import VerificationForm from './_auth/forms/VerificationForm';
 import RootLayout from './_root/RootLayout';
+import ResendVerificationCodeForm from './_auth/forms/ResendVerificationCodeForm';
+import ForgotPasswordForm from './_auth/forms/ForgotPasswordForm';
 
 const App = () => {
   return (
@@ -13,6 +16,9 @@ const App = () => {
           <Route element={<AuthLayout />}>
             <Route path="/sign-in" element={<SigninForm />}/>
             <Route path="/sign-up" element={<SignupForm />}/>
+            <Route path="/verification-code" element={<VerificationForm />}/>
+            <Route path="/resend-code" element={<ResendVerificationCodeForm />}/>
+            <Route path="/forgot-password" element={<ForgotPasswordForm />}/>
           </Route>
           
             <Route element={<RootLayout/>}>

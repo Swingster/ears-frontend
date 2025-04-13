@@ -16,22 +16,18 @@ import { Input } from "@/components/ui/input"
 // Schema
 const formSchema = z
   .object({
-    email: z.string().email({
-      message: "Invalid email address.",
-    }),
-    password: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+    verificationCode: z.string().min(5, {
+      message: "Invalid Code.",
     })
   })
 
-const SigninForm = () => {
+const VerificationForm = () => {
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      verificationCode: "",
     },
   })
  
@@ -48,19 +44,19 @@ const SigninForm = () => {
           <div className="bg-white px-6 py-8 rounded-xl w-full max-w-[420px] shadow-lg">
           <h2 className="h3-bold text-center mb-2 text-gray-800">Login to your Account</h2>
           <p className="text-gray-600 small-medium md:base-regular text-center mb-6">
-          Fill in the fields to get started
+          To continue please write the verification code sent to your email
           </p>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3 w-full mt-2">
             <FormField
               control={form.control}
-              name="email"
+              name="verificationCode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="base-medium ">Email</FormLabel>
+                  <FormLabel className="base-medium justify-center items-center">Verification Code</FormLabel>
                   <FormControl>
                     <Input
                       className="insert-box"
-                      placeholder="you@example.com"
+                      placeholder="L6g1H"
                       {...field}
                     />
                   </FormControl>
@@ -69,38 +65,23 @@ const SigninForm = () => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="base-medium">Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      className="insert-box"
-                      placeholder="••••••••"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-red-400 text-sm" />
-                </FormItem>
-              )}
-            />
               
               {/* Submit Button */}
             <Button type="submit" className="submit-button">
               Log In
             </Button>
             <p className="text-sm text-center mt-2 text-gray-600">
-              Don't have an account?
-              <Link to="/sign-up" className="link">
-              SignUp
+              Resend verification code
+              <Link to="/resend-code" className="link">
+              Click here
               </Link>
             </p>
-              <Link to="/forgot-password" className="link text-sm text-center">
-              Forgot Password?
+            <p className="text-sm text-center text-gray-600">
+              Don't have an Account?
+              <Link to="/sign-up" className="link">
+              Signup
               </Link>
+            </p>
           </form>
           </div>
           </div>
@@ -108,4 +89,4 @@ const SigninForm = () => {
   )
 }
 
-export default SigninForm
+export default VerificationForm

@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from "@/components/ui/button"
+import { loginUser } from "@/services/authService"
 import {
   Form,
   FormControl,
@@ -12,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
 
 // Schema
 const formSchema = z
@@ -26,6 +28,10 @@ const formSchema = z
 
 const SigninForm = () => {
 
+  const navigate = useNavigate(); // ✅ hook from React Router
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState("");
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,12 +41,19 @@ const SigninForm = () => {
     },
   })
  
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  const onSubmit = async (data) => {
+    try {
+      const res = await loginUser(data);
+      localStorage.setItem("token", res.token);
+      console.log("✅ Logged in:", res);
+      
+      // ✅ Redirect to homepage
+      navigate("/");
+    } catch (error) {
+      console.error("Login error:", error.message);
+      setError("Invalid email or password");
+    }
+  };
 
   return (
         <Form {...form}>

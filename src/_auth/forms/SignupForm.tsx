@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from "@/components/ui/button"
+import { signupUser } from "@/services/authService"
 import {
   Form,
   FormControl,
@@ -35,6 +36,8 @@ const formSchema = z
 
 const SignupForm = () => {
 
+  const navigate = useNavigate();
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,11 +50,17 @@ const SignupForm = () => {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  const onSubmit = async (data) => {
+    try {
+      const user = await signupUser(data);
+      console.log("✅ Signed up user:", user);
+
+      navigate("/verify-email", { state: { email: data.email } });
+      
+    } catch (error) {
+      console.error("Signup error:", error.message);
+    }
+  };
 
   return (
         <Form {...form}>

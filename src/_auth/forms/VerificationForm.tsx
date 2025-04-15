@@ -1,8 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { verifyUser, resendVerification } from "@/services/authService";
 import {
   Form,
   FormControl,
@@ -23,6 +25,11 @@ const formSchema = z
 
 const VerificationForm = () => {
 
+  const { state } = useLocation(); // state.email passed from signup
+  const email = state?.email;
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,11 +39,24 @@ const VerificationForm = () => {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  const onSubmit = async (data) => {
+    try {
+      await verifyUser({ email, verificationCode: data.code });
+      // Redirect to login or dashboard if successful
+      navigate("/sign-in");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleResend = async () => {
+    try {
+      await resendVerification(email);
+      alert("Verification code sent!");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
         <Form {...form}>

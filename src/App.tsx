@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './_root/pages/Home';  
 import './globals.css';
 import AuthLayout from './_auth/AuthLayout';
@@ -10,19 +10,20 @@ import ResendVerificationCodeForm from './_auth/forms/ResendVerificationCodeForm
 import ForgotPasswordForm from './_auth/forms/ForgotPasswordForm';
 
 const App = () => {
+  const token = localStorage.getItem("token");
   return (
     <main className="flex h-screen">
         <Routes>
           <Route element={<AuthLayout />}>
             <Route path="/sign-in" element={<SigninForm />}/>
             <Route path="/sign-up" element={<SignupForm />}/>
-            <Route path="/verification-code" element={<VerificationForm />}/>
+            <Route path="/verify-email" element={<VerificationForm />}/>
             <Route path="/resend-code" element={<ResendVerificationCodeForm />}/>
             <Route path="/forgot-password" element={<ForgotPasswordForm />}/>
           </Route>
           
             <Route element={<RootLayout/>}>
-              <Route index element={<Home />}/>
+              <Route index element={token ? <Home />: <Navigate to="/sign-in"/>}/>
             </Route>
         </Routes>
     </main>

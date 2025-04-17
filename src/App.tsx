@@ -8,6 +8,7 @@ import VerificationForm from './_auth/forms/VerificationForm';
 import RootLayout from './_root/RootLayout';
 import ResendVerificationCodeForm from './_auth/forms/ResendVerificationCodeForm';
 import ForgotPasswordForm from './_auth/forms/ForgotPasswordForm';
+import ProfilePage from './_root/pages/ProfilePage';
 
 const App = () => {
   const token = localStorage.getItem("token");
@@ -24,6 +25,7 @@ const App = () => {
           
             <Route element={<RootLayout/>}>
               <Route index element={token ? <Home />: <Navigate to="/sign-in"/>}/>
+              <Route path="/profile" element={<ProfilePage/>}/>
             </Route>
         </Routes>
     </main>

@@ -1,39 +1,50 @@
-import { Input } from '../ui/input';
 import Dropdown from '../TopbarComponents/Dropdown';
 import useLogout from './useLogout';
+import { Indicator } from '@mantine/core';
+import { MdOutlineNotificationsNone } from "react-icons/md";
+import { FcBriefcase } from "react-icons/fc";
 import { CiLogout } from "react-icons/ci";
 import DropDownProfile from '../TopbarComponents/DropDownProfile';
 import { useNavigate } from 'react-router-dom';
+import NavLinks from './NavLinks';
 
-const Topbar = ({ search, setSearch, className }) => {
+const Topbar = () => {
 
   const logout = useLogout();
   const navigate = useNavigate();
 
     return (
-        <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 gap-4">
+        <header className="w-full flex justify-between px-3 py-2 items-center bg-white border-b border-gray-200 sticky top-0 z-10">
           {/* Logo or App Name (optional) */}
-          <h1 className="text-lg font-semibold text-dark-2 hidden sm:block cursor-pointer"
+          <h1 className="gap-2 text-lg font-semibold text-dark-2 sm:block cursor-pointer flex lg:flex items-center"
           onClick={() => navigate("/")}>
-            Job Board
+           <FcBriefcase className='w-6 h-6'/> Job Board 
             </h1>
-  
+
+          {/* Navigation Links (optional) */}
+          {NavLinks()}
+
           {/* Search Bar */}
-          <div className={`flex-1 ${className ?? ''} mx-4`}>
+         {/* <div className={`flex-1 ${className ?? ''} mx-4`}>
           <Input
             type="text"
             placeholder="Search jobs..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full"
-          />
-        </div>
+            className="w-50"
+          /> 
+        </div>*/}
+        
             {/* User Profile / Logout Button */}
-              <DropDownProfile 
-              /><CiLogout 
+            <div className="flex items-center gap-x-4">
+              <Indicator  inline withBorder offset={14} processing color='red' size={12} 
+              className=''>
+                <MdOutlineNotificationsNone className='icon-button'/>
+              </Indicator>
+              <DropDownProfile/>
+              <CiLogout 
                 onClick={logout}
-                className="icon-button icon-button:hover flex items-center md:block hidden gap-x-4"
+                className="icon-button icon-button:hover md:block hidden gap-x-4"
               />
             {/* Dropdown Menu */}
         <Dropdown/>

@@ -1,5 +1,3 @@
-import React from 'react'
-import { TextInput } from '@mantine/core';
 import { Button } from "@/components/ui/button"
 
 const LandingPage = () => {

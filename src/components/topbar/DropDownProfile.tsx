@@ -19,7 +19,7 @@ const DropDownProfile = () => {
   return (
     <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <CgProfile className='icon-button icon-button:hover flex items-center md:block hidden'/>
+            <CgProfile className='icon-button icon-button:hover flex items-center md:block hidden/>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-35 h-20">
             <DropdownMenuGroup>

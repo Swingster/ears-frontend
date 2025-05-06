@@ -1,5 +1,5 @@
 import JobCard from "@/components/jobs/JobsCard";
-import { mockJobs } from "@/data/mockJobs";
+import { mockJobs } from "@/Data/Data";
 import { useState } from "react";
 const FindJobs = () => {
   const [search] = useState("");

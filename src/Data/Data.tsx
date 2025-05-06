@@ -1,3 +1,5 @@
+export const companies = ["tiktok", "paypal", "microsoft", "amazon", "netflix", "spotify", "mastercard", "visa", "android", "youtube", "samsung"];
+
 export const mockJobs = [
     {
       id: 1,

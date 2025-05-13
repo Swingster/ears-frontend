@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './_root/pages/Home';  
 import './globals.css';
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import AuthLayout from './_auth/AuthLayout';
 import SigninForm from './_auth/forms/SigninForm';
 import SignupForm from './_auth/forms/SignupForm';
@@ -10,10 +11,10 @@ import RootLayout from './_root/RootLayout';
 import ResendVerificationCodeForm from './_auth/forms/ResendVerificationCodeForm';
 import ForgotPasswordForm from './_auth/forms/ForgotPasswordForm';
 import ProfilePage from './_root/pages/Profile/ProfilePage';
-import FindJobs from './_root/pages/NavBar/FindJobs';
-import FindTalent from './_root/pages/NavBar/FindTalent';
-import UploadJob from './_root/pages/NavBar/UploadJob';
-import AboutUs from './_root/pages/NavBar/AboutUs';
+import FindJobs from './features/NavBar/FindJobs';
+import FindTalent from './features/NavBar/FindTalent';
+import UploadJob from './features/NavBar/UploadJob';
+import AboutUs from './features/NavBar/AboutUs';
 
 const App = () => {
   const token = localStorage.getItem("token");

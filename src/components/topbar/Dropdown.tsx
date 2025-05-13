@@ -1,64 +1,75 @@
 import { useNavigate } from 'react-router-dom';
-import useLogout from '../shared/useLogout';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTrigger,
+  SheetTitle,
+  SheetClose
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react";
 
-const Dropdown = () => {
+const DropDown = () => {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
-        const logout = useLogout();
-
-        useEffect(() => {
-          const handleResize = () => {
-            if (window.innerWidth >= 1200 && open) {
-              setOpen(false);
-            }
-          };
-          window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [open]);
 
   return (
-    <DropdownMenu open={open} onOpenChange={setOpen}>
-          <DropdownMenuTrigger asChild className=''>
-            <Button className="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 lg:hidden">
-              <Menu className="w-4 h-4 text-gray-700" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-35 h-20">
-            <DropdownMenuItem className="link-menu" onClick={() => navigate("/")}>Home</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-            <DropdownMenuItem className='link-menu' disabled onClick={() => navigate("/profile")}>Profile</DropdownMenuItem>
-            <DropdownMenuItem className='link-menu' disabled onClick={() => navigate("/settings")}>Account Settings</DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuSub>
-            <DropdownMenuSubTrigger className='' disabled>Invite users</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem disabled>Email</DropdownMenuItem>
-                <DropdownMenuItem disabled>Message</DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-            <DropdownMenuItem className="hover:scale-105 transition text-violet-600 hover:text-blue-700" onClick={logout}>Log out</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+    <Sheet>
+      {/* Button to open sidebar */}
+      <SheetTrigger asChild>
+        <button type="button" className="lg:hidden p-2 rounded-md hover:bg-gray-100">
+          <Menu className="w-6 h-6 text-gray-800" />
+        </button>
+      </SheetTrigger>
+
+      {/* Sidebar content */}
+      <SheetContent side="left" className="w-64 bg-white border-r">
+        <SheetHeader>
+          <SheetTitle className="text-xl font-bold">Navigation</SheetTitle>
+        </SheetHeader>
+
+        <div className="mt-4 flex flex-col gap-3">
+          <SheetClose asChild>
+            <button
+              onClick={() => navigate("/")}
+              className="text-left text-sm text-gray-700 hover:text-primary-600"
+            >
+              Home
+            </button>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <button
+              onClick={() => navigate("/profile")}
+              className="text-left text-sm text-gray-700 hover:text-primary-600"
+            >
+              Profile
+            </button>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <button
+              onClick={() => navigate("/settings")}
+              className="text-left text-sm text-gray-700 hover:text-primary-600"
+            >
+              Settings
+            </button>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/sign-in");
+              }}
+              className="text-left text-sm text-red-500 hover:underline mt-4"
+            >
+              Logout
+            </button>
+          </SheetClose>
+        </div>
+      </SheetContent>
+    </Sheet>
   )
 }
 
-export default Dropdown
+export default DropDown

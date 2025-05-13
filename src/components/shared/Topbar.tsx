@@ -1,12 +1,13 @@
-import Dropdown from '../TopbarComponents/Dropdown';
 import useLogout from './useLogout';
 import { Indicator } from '@mantine/core';
 import { MdOutlineNotificationsNone } from "react-icons/md";
 import { FcBriefcase } from "react-icons/fc";
 import { CiLogout } from "react-icons/ci";
-import DropDownProfile from '../TopbarComponents/DropDownProfile';
 import { useNavigate } from 'react-router-dom';
 import NavLinks from './NavLinks';
+
+import Dropdown from '../topbar/Dropdown';
+import DropDownProfile from '../topbar/DropDownProfile';
 
 const Topbar = () => {
 

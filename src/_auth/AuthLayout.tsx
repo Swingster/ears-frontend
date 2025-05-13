@@ -11,7 +11,7 @@ const AuthLayout = () => {
         <section className="relative flex min-h-screen w-full bg-dark-1">
           {/* Background Image */}
           <img
-            src="/src/assets/bg.jpg" 
+            src="/public/assets/bg.jpg" 
             alt="auth background"
             className="absolute inset-0 md:block h-full w-full object-cover z-0"
           />

@@ -1,5 +1,34 @@
 export const companies = ["tiktok", "paypal", "microsoft", "amazon", "netflix", "spotify", "mastercard", "visa", "android", "youtube", "samsung"];
 
+export const JobCategories = [
+    {
+        name: "Construction Worker",
+        desc: "Engineering jobs in various fields.",
+        jobs: 120,
+    },
+    {
+        name: "Teacher",
+        desc: "Marketing and sales positions.",
+        jobs: 80,
+    },
+    {
+        name: "Design",
+        desc: "Creative design roles.",
+        jobs: 50,
+    },
+    {
+        name: "Banker",
+        desc: "Finance and accounting jobs.",
+        jobs: 70,
+    },
+    {
+        name: "Nurse",
+        desc: "Healthcare and medical positions.",
+        jobs: 90,
+    },
+];
+
+
 export const mockJobs = [
     {
       id: 1,

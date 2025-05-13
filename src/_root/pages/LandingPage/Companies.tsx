@@ -3,7 +3,7 @@ import { companies } from "@/Data/Data";
 
 const Companies = () => {
   return (
-    <div className='nt-20 pb-5'>
+    <div className='mt-20 pb-5'>
         <div className='text-3xl text-center font-semibold'>
             Trusted by <span className='text-denim-50'>100+</span>Companies
         </div>

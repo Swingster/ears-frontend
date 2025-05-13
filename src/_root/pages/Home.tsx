@@ -1,4 +1,5 @@
 import Companies from "./LandingPage/Companies";
+import JobCategroy from "./LandingPage/JobCategroy";
 import LandingPage from "./LandingPage/LandingPage";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
   <div>
     <LandingPage />
     <Companies/>
+    <JobCategroy/>
   </div>
   )
 };

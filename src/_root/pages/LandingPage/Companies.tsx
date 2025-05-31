@@ -5,7 +5,7 @@ const Companies = () => {
   return (
     <div className='mt-20 pb-5'>
         <div className='text-3xl text-center font-semibold'>
-            Trusted by <span className='text-denim-50'>100+</span>Companies
+            Trusted by <span className='text-indigo-600'>100+</span> Companies
         </div>
         <Marquee pauseOnHover={true} speed={50} className='mt-2'>
           {

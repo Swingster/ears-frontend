@@ -103,6 +103,9 @@
   .submit-button {
     @apply w-full bg-indigo-600 hover:bg-indigo-500 text-white h-12 rounded-md font-semibold transition
   }
+  .button {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md
+  }
 
   .link {
     @apply text-indigo-600 hover:text-indigo-700 font-medium ml-1 transition hover:underline;

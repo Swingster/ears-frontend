@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer/Footer'
 import Topbar from '@/components/shared/Topbar'
 import { Outlet } from 'react-router-dom'
 
@@ -9,7 +10,8 @@ const RootLayout = () => {
       </div>
         <main>
           <Outlet />
-        </main>  
+        </main>
+        <Footer />  
     </div>
   )
 }

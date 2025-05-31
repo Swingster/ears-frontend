@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer/Footer";
 import Companies from "./LandingPage/Companies";
 import JobCategroy from "./LandingPage/JobCategroy";
 import LandingPage from "./LandingPage/LandingPage";
@@ -13,7 +12,6 @@ const Home = () => {
     <JobCategroy/>
     <Testimonials/>
     <Subscribe />
-    <Footer />
   </div>
   )
 };

@@ -4,30 +4,40 @@ import { testimonials } from "@/Data/Data";
 const Testimonials = () => {
   return (
     <div className="mt-20 pb-5">
-        <div className="text-3xl text-gray-500 text-center mb-3 font-semibold">
-            What <span className="text-denim-50">Users</span> say about us
-        </div>
+  {/* Section Title */}
+  <div className="text-3xl text-gray-800 text-center mb-3 font-semibold">
+    What <span className="text-indigo-600">Users</span> say about us
+  </div>
 
-    <div className="flex justify-evenly flex-wrap gap-4">
-        {testimonials.map((data, index) => (
-        <div
+  {/* Testimonials */}
+  <div className="flex justify-evenly flex-wrap gap-6">
+    {testimonials.map((data, index) => (
+      <div
         key={index}
-        className="flex flex-col gap-3 w-[23%] border-gray-400 border-2 p-3 px-1 py-1 rounded-2xl mt-10"
-        >
-        <div className="flex gap-2 items-center">
-          <Avatar className="!h-14 !w-14" src="/assets/Avatar.png" alt="User Avatar" />
+        className="flex flex-col gap-3 w-full sm:w-[30%] md:w-[25%] border border-gray-200 bg-white shadow-sm p-5 rounded-2xl mt-10 hover:shadow-md transition"
+      >
+        {/* User Header */}
+        <div className="flex gap-3 items-center">
+          <Avatar
+            className="!h-14 !w-14"
+            src="/assets/Avatar.png"
+            alt="User Avatar"
+          />
           <div>
-            <div className="text-base font-semibold text-center text-gray-500">{data.name}</div>
+            <div className="text-base font-semibold text-gray-800">
+              {data.name}
+            </div>
             <Rating value={data.rating} fractions={2} readOnly />
-            <div className="text-sm text-center text-gray-400">{data.position}</div>
+            <div className="text-sm text-gray-500">{data.position}</div>
           </div>
         </div>
-        <div className="text-xs text-gray-500 text-center mb-3">{data.feedback}</div>
+
+        {/* Feedback */}
+        <div className="text-sm text-gray-600 text-center">{data.feedback}</div>
       </div>
     ))}
   </div>
 </div>
-        
   )
 }
 

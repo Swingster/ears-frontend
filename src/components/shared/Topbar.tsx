@@ -5,7 +5,6 @@ import { FcBriefcase } from "react-icons/fc";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 import NavLinks from './NavLinks';
-
 import Dropdown from '../topbar/Dropdown';
 import DropDownProfile from '../topbar/DropDownProfile';
 

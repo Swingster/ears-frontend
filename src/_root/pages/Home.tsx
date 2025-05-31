@@ -1,6 +1,9 @@
+import Footer from "@/components/Footer/Footer";
 import Companies from "./LandingPage/Companies";
 import JobCategroy from "./LandingPage/JobCategroy";
 import LandingPage from "./LandingPage/LandingPage";
+import Subscribe from "./LandingPage/Subscribe";
+import Testimonials from "./LandingPage/Testimonials";
 
 const Home = () => {
   return (
@@ -8,6 +11,9 @@ const Home = () => {
     <LandingPage />
     <Companies/>
     <JobCategroy/>
+    <Testimonials/>
+    <Subscribe />
+    <Footer />
   </div>
   )
 };
